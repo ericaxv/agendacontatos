@@ -3,17 +3,18 @@
     <div class="col-lg-4">
       <div class="card">
         <div class="card-header bg-dark text-light text-center">
-          <h5>Autenticação de Usuário</h5>
+          <h5>Acessar Conta</h5>
         </div>
         <div class="card-body">
+          <p class="text-center">Informe suas credenciais de acesso:</p>
           <form>
             <div class="mb-3">
-              <label for="inputEmail" class="form-label"> E-mail:</label>
+              <label for="inputEmail" class="form-label"> E-mail de Acesso:</label>
 
               <input type="email" class="form-control" id="inputEmail" />
             </div>
             <div class="mb-3">
-              <label for="inputPassword" class="form-label">Senha:</label>
+              <label for="inputPassword" class="form-label">Senha de Acesso:</label>
               <input type="password" class="form-control" id="inputPassword" />
             </div>
             <div class="d-grid gap-2">
@@ -22,8 +23,8 @@
           </form>
           <hr />
           <div class="text-center">
-            <a class="text-dark" href="#">Criar conta do usuário</a> |
-            <a class="text-dark" href="#">Esqueci minha senha</a>
+            <a class="text-dark" [routerLink]="['/criar-conta']">Criar conta do usuário</a> |
+            <a class="text-dark" [routerLink]="['/esqueci-minha-senha']">Esqueci minha senha</a>
           </div>
         </div>
       </div>
