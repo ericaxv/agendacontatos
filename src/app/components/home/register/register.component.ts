@@ -1,5 +1,8 @@
+import { CriarContaRequest } from './../../../models/requests/criar-conta.request.models';
+import { CriarContaService } from './../../../services/criar-conta.services';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatchPasswordValidator } from 'src/app/Validators/matchpassword.validator';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +10,13 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
+
+  constructor(
+    //atributo para injeçao de dependencia
+    private criarContaService: CriarContaService
+  ){
+
+  }
 
   formRegister = new FormGroup({
     nome: new FormControl('', [
@@ -25,7 +35,10 @@ export class RegisterComponent {
       Validators.required
     ])
 
-  });
+  }, {
+    validators: [
+       MatchPasswordValidator.matchPassword
+    ]});
 
   // exibindo erros de validaçao no formulário
 
@@ -36,7 +49,23 @@ export class RegisterComponent {
   // capturando dados do formulário
 
   onSubmit() : void {
-    console.log(this.formRegister.value);
- }
+    //objeto com os dados que serã enviados ao serviço de criaçao de conta.
 
+    let criarcontarequest: CriarContaRequest = {
+      nome: this.formRegister.value.nome as string,
+      email: this.formRegister.value.email as string,
+      senha: this.formRegister.value.senha as string
+    };
+    //executando chamado para o serviço
+
+    this.criarContaService.post(criarcontarequest)
+      .subscribe({
+        next: (response) => {
+            console.log(response);
+        },
+        error: (e) => {
+          console.log(e);
+        }
+      });
+ }
 }

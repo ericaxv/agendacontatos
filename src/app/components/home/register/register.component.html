@@ -37,7 +37,7 @@
             <div class="mb-2">
               <label for="inputPassword" class="form- label">Senha:</label>
 
-              <input type="password" class="form-control" id="inputPassword" formControlName="senha" />
+              <input type="password" class="form-control" id="inputPassword" formControlName="senha"/>
               <span class="text-danger" *ngIf="form.senha.touched && form.senha.invalid">
                 <small *ngIf="form.senha.errors.required">
                    Por favor, informe o senha do usuário.
@@ -61,6 +61,9 @@
                 <small *ngIf="form.senhaConfirmacao.errors.required">
                    Por favor, confirme o senha do usuário.
                 </small>
+                <small *ngIf="form.senhaConfirmacao.errors.matchPassword">
+                  As senhas devem ser iguais.
+               </small>
                
                </span>
 
