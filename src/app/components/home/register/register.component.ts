@@ -3,6 +3,7 @@ import { CriarContaService } from './../../../services/criar-conta.services';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPasswordValidator } from 'src/app/Validators/matchpassword.validator';
+import { NgxSpinnerService } from 'ngx-spinner'; 
 
 @Component({
   selector: 'app-register',
@@ -11,9 +12,14 @@ import { MatchPasswordValidator } from 'src/app/Validators/matchpassword.validat
 })
 export class RegisterComponent {
 
+  //atributos
+  mensagemSucesso : string = '';
+  mensagemErro: string = '';
+
   constructor(
     //atributo para injeçao de dependencia
-    private criarContaService: CriarContaService
+    private criarContaService: CriarContaService,
+    private spinnerService: NgxSpinnerService
   ){
 
   }
@@ -49,23 +55,42 @@ export class RegisterComponent {
   // capturando dados do formulário
 
   onSubmit() : void {
-    //objeto com os dados que serã enviados ao serviço de criaçao de conta.
+    //spinner
+    this.spinnerService.show();
 
+    //objeto com os dados que serã enviados ao serviço de criaçao de conta.
     let criarcontarequest: CriarContaRequest = {
       nome: this.formRegister.value.nome as string,
       email: this.formRegister.value.email as string,
       senha: this.formRegister.value.senha as string
     };
+    // limpar as mensagens
+    this.mensagemSucesso = '';
+    this.mensagemErro = '';
+
     //executando chamado para o serviço
 
     this.criarContaService.post(criarcontarequest)
       .subscribe({
         next: (response) => {
-            console.log(response);
+            this.mensagemSucesso = `Parabéns ${response.nome}, sua conta foi criada com sucesso!`;
+            //Limpar formulário da página
+            this.formRegister.reset();
         },
         error: (e) => {
-          console.log(e);
+           switch(e.status){
+            case 422: 
+               this.mensagemErro = e.error.message;
+               break;
+            default:
+               this.mensagemErro = 'Falha ao cadastrar conta do usuário.';
+               break;
+            
+           } 
         }
+      }).add(()=>{
+        this.spinnerService.hide();
       });
- }
+   }
 }
+//parei iniciando a aula 6

@@ -6,46 +6,99 @@
           <h5>Criar Conta de Usuário</h5>
         </div>
         <div class="card-body">
+          <div *ngIf="mensagemSucesso"
+            class="alert alert-success alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Sucesso! </strong>{{ mensagemSucesso }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close" (click)="mensagemSucesso = ''"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div *ngIf="mensagemErro"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Erro! </strong>{{ mensagemErro }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close" (click)="mensagemErro = ''"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
           <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
             <div class="mb-2">
               <label for="inputNome" class="form- label"
                 >Nome do usuário:</label
               >
-              <input type="text" class="form-control" id="inputNome" formControlName="nome" />
-                <span class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
-                 <small *ngIf="form.nome.errors.required">
+              <input
+                type="text"
+                class="form-control"
+                id="inputNome"
+                formControlName="nome"
+              />
+              <span
+                class="text-danger"
+                *ngIf="form.nome.touched && form.nome.invalid"
+              >
+                <small *ngIf="form.nome.errors.required">
                   Por favor, informe o nome do usuário.
-                 </small>
-                 <small *ngIf="form.nome.errors.pattern">
+                </small>
+                <small *ngIf="form.nome.errors.pattern">
                   Por favor informe um nome válido de 8 a 100 caracteres.
-                 </small>
-                </span>
+                </small>
+              </span>
             </div>
             <div class="mb-2">
               <label for="inputEmail" class="form- label">Email:</label>
 
-              <input type="email" class="form-control" id="inputEmail" formControlName="email" />
-              <span class="text-danger" *ngIf="form.email.touched && form.email.invalid">
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                formControlName="email"
+              />
+              <span
+                class="text-danger"
+                *ngIf="form.email.touched && form.email.invalid"
+              >
                 <small *ngIf="form.email.errors.required">
-                   Por favor, informe o email do usuário.
+                  Por favor, informe o email do usuário.
                 </small>
                 <small *ngIf="form.email.errors.email">
-                   Por favor informe um email válido.
+                  Por favor informe um email válido.
                 </small>
-               </span>
+              </span>
             </div>
             <div class="mb-2">
               <label for="inputPassword" class="form- label">Senha:</label>
 
-              <input type="password" class="form-control" id="inputPassword" formControlName="senha"/>
-              <span class="text-danger" *ngIf="form.senha.touched && form.senha.invalid">
+              <input
+                type="password"
+                class="form-control"
+                id="inputPassword"
+                formControlName="senha"
+              />
+              <span
+                class="text-danger"
+                *ngIf="form.senha.touched && form.senha.invalid"
+              >
                 <small *ngIf="form.senha.errors.required">
-                   Por favor, informe o senha do usuário.
+                  Por favor, informe o senha do usuário.
                 </small>
                 <small *ngIf="form.senha.errors.pattern">
-                   Por favor informe uma senha com letras maiúsculas, minúsculas, números e caracteres especiais.
+                  Por favor informe uma senha com letras maiúsculas, minúsculas,
+                  números e caracteres especiais.
                 </small>
-               </span>
+              </span>
             </div>
             <div class="mb-2">
               <label for="inputConfirmPassword" class="form-label"
@@ -57,19 +110,26 @@
                 id="inputConfirmPassword"
                 formControlName="senhaConfirmacao"
               />
-              <span class="text-danger" *ngIf="form.senhaConfirmacao.touched && form.senhaConfirmacao.invalid">
+              <span
+                class="text-danger"
+                *ngIf="
+                  form.senhaConfirmacao.touched && form.senhaConfirmacao.invalid
+                "
+              >
                 <small *ngIf="form.senhaConfirmacao.errors.required">
-                   Por favor, confirme o senha do usuário.
+                  Por favor, confirme o senha do usuário.
                 </small>
                 <small *ngIf="form.senhaConfirmacao.errors.matchPassword">
                   As senhas devem ser iguais.
-               </small>
-               
-               </span>
-
+                </small>
+              </span>
             </div>
             <div class="d-grid mb-2">
-              <button type="submit" [disabled]="!formRegister.valid" class="btn btn-primary btn-sm">
+              <button
+                type="submit"
+                [disabled]="!formRegister.valid"
+                class="btn btn-primary btn-sm"
+              >
                 Realizar Cadastro
               </button>
             </div>
