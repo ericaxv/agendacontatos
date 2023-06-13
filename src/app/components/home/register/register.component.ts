@@ -93,4 +93,3 @@ export class RegisterComponent {
       });
    }
 }
-//parei iniciando a aula 6

@@ -7,18 +7,52 @@
         </div>
         <div class="card-body">
           <p class="text-center">Informe suas credenciais de acesso:</p>
-          <form>
+          <hr/>
+          <div *ngIf="mensagemErro"
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>Erro! </strong>{{ mensagemErro }}
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close" (click)="mensagemErro = ''"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
             <div class="mb-3">
               <label for="inputEmail" class="form-label"> E-mail de Acesso:</label>
 
-              <input type="email" class="form-control" id="inputEmail" />
+              <input type="email" class="form-control" id="inputEmail" formControlName="email" />
+              <span
+              class="text-danger"
+              *ngIf="form.email.touched && form.email.invalid"
+            >
+              <small *ngIf="form.email.errors.required">
+                Por favor, informe o email do usuário.
+              </small>
+              <small *ngIf="form.email.errors.invalid">
+                Por favor, informe um email válido.
+              </small>
+            </span>
             </div>
             <div class="mb-3">
               <label for="inputPassword" class="form-label">Senha de Acesso:</label>
-              <input type="password" class="form-control" id="inputPassword" />
+              <input type="password" class="form-control" id="inputPassword" formControlName="senha" />
+              <span
+              class="text-danger"
+              *ngIf="form.senha.touched && form.senha.invalid"
+            >
+              <small *ngIf="form.senha.errors.minlength">
+                Por favor, informe uma senha de no mínimo 8 caracteres.
+              </small>
+            </span>
             </div>
             <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Entrar</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!formLogin.valid" >Entrar</button>
             </div>
           </form>
           <hr />

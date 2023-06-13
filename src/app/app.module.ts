@@ -11,6 +11,7 @@ import { NavbarComponent } from './components/home/navbar/navbar.component';
 import { LoginComponent } from './components/home/login/login.component';
 import { RegisterComponent } from './components/home/register/register.component';
 import { PasswordComponent } from './components/home/password/password.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PasswordComponent } from './components/home/password/password.component
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    PasswordComponent
+    PasswordComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
