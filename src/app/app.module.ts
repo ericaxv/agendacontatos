@@ -12,6 +12,9 @@ import { LoginComponent } from './components/home/login/login.component';
 import { RegisterComponent } from './components/home/register/register.component';
 import { PasswordComponent } from './components/home/password/password.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ConsultarContatosComponent } from './components/admin/consultar-contatos/consultar-contatos.component';
+import { EditarContatosComponent } from './components/admin/editar-contatos/editar-contatos.component';
+import { CadastarContatosComponent } from './components/admin/cadastar-contatos/cadastar-contatos.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     LoginComponent,
     RegisterComponent,
     PasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConsultarContatosComponent,
+    EditarContatosComponent,
+    CadastarContatosComponent
   ],
   imports: [
     BrowserModule,

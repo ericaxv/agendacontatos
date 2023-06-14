@@ -1,7 +1,7 @@
 export const environment = {
     //API de contatos
     
-    apiContatos: "http://localhost:5129/api"
+    apiContatos: "http://apicontatoscoti-001-site1.itempurl.com/api"
 
-    //https://agendacontatosangular.azurewebsites.net/
+    //http://localhost:5129/api
 }
