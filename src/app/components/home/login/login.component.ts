@@ -1,4 +1,4 @@
-import { AutenticarService } from './../../../services/autenticar.services';
+import { AutenticarService } from '../../../services/autenticar.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';

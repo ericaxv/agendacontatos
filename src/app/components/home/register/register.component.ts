@@ -1,5 +1,5 @@
 import { CriarContaRequest } from './../../../models/requests/criar-conta.request.models';
-import { CriarContaService } from './../../../services/criar-conta.services';
+import { CriarContaService } from '../../../services/criar-conta.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPasswordValidator } from 'src/app/Validators/matchpassword.validator';

@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from "ngx-spinner";
 
 import { AppComponent } from './app.component';
@@ -14,7 +14,9 @@ import { PasswordComponent } from './components/home/password/password.component
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { ConsultarContatosComponent } from './components/admin/consultar-contatos/consultar-contatos.component';
 import { EditarContatosComponent } from './components/admin/editar-contatos/editar-contatos.component';
-import { CadastarContatosComponent } from './components/admin/cadastar-contatos/cadastar-contatos.component';
+import { CadastrarContatosComponent } from './components/admin/cadastrar-contatos/cadastrar-contatos.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 
 
 @NgModule({
@@ -27,7 +29,7 @@ import { CadastarContatosComponent } from './components/admin/cadastar-contatos/
     DashboardComponent,
     ConsultarContatosComponent,
     EditarContatosComponent,
-    CadastarContatosComponent
+    CadastrarContatosComponent
   ],
   imports: [
     BrowserModule,
@@ -37,10 +39,19 @@ import { CadastarContatosComponent } from './components/admin/cadastar-contatos/
     HttpClientModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgxMaskDirective,
+    NgxMaskPipe
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, 
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    provideNgxMask()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

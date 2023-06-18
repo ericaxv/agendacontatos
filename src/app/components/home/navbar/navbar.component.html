@@ -30,14 +30,14 @@
     <div *ngIf="auth" class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
+          <a class="nav-link text-light" [routerLink]="['/dashboard']">Dashboard</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-light" [routerLink]="['/cadastrar-contatos']">Cadastrar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-light" [routerLink]="['/consultar-contatos']">Consultar</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-light" [routerLink]="['/dashboard']">Dashboard</a>
-        </li>
+        </li> 
       </ul>
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">

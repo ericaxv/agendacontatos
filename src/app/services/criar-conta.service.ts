@@ -1,5 +1,5 @@
-import { CriarContaResponse } from './../models/responses/criar-conta.response.models';
-import { CriarContaRequest } from './../models/requests/criar-conta.request.models';
+import { CriarContaResponse } from '../models/responses/criar-conta.response.models';
+import { CriarContaRequest } from '../models/requests/criar-conta.request.models';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
