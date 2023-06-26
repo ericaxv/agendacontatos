@@ -19,7 +19,7 @@
           (click)="mensagem = ''"
         ></button>
       </div>
-      <form [formGroup="formCadastro"] (ngSubmit)="onSubmit()">
+      <form [formGroup]="formCadastro" (ngSubmit)="onSubmit()">
         <div class="row mb-2">
           <div class="col-md-6">
             <label class="form-label">Nome do contato:</label>

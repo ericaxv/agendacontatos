@@ -17,6 +17,8 @@ import { EditarContatosComponent } from './components/admin/editar-contatos/edit
 import { CadastrarContatosComponent } from './components/admin/cadastrar-contatos/cadastrar-contatos.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    NgxPaginationModule,
+    FilterPipeModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
