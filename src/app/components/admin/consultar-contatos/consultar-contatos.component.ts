@@ -11,8 +11,10 @@ import { ContatosService } from 'src/app/services/contatos.service';
 export class ConsultarContatosComponent implements OnInit{
   //atributos
   contatos: ContatosGetResponse[] = [];
+  contato: ContatosGetResponse | null = null;
   pagina: number = 1;
   filter: any = { nome: '', email: '', telefone: '' };
+  mensagem: string = '';
 
   // método construtor
   constructor(
@@ -42,5 +44,28 @@ export class ConsultarContatosComponent implements OnInit{
   // Função para capturar e armazenar a página do componente ngx-pagintation
   pageChange(event: any): void{
     this.pagina = event
+  }
+
+  //capturar um contato selecionado ao clicar no botão excluir.
+  setContato(contato: ContatosGetResponse) : void {
+    this.contato = contato;
+  }
+
+  //função para deletar o contato
+  onDelete() : void {
+    this.spinnerService.show();
+    this.contatosService.delete(this.contato?.idContato as string)
+              .subscribe({
+                next: (data) => {
+                  this.mensagem = `Contato ${data.nome} excluído com sucesso!`;
+                  this.ngOnInit();
+                },
+                error: (e) => {
+                  this.mensagem = "Falha ao excluir o contato.";
+                  console.log(e.error);
+                }})
+             .add(() => {
+               this.spinnerService.hide();
+             })
   }
 }
