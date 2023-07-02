@@ -2,6 +2,14 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/c
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { AuthenticationHelper } from "../helpers/authentication.helper";
+import { environment } from "src/environments/environments";
+
+//mapear endpoints que precisam de autorização
+
+const endpoints = [
+    environment.apiContatos + "/contatos",
+    environment.apiContatos + "/Dashboard"
+]
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor{
     ){}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if(req.url.includes('/contatos')){
+        if(endpoints.some(item => req.url.includes(item))){
             var accessToken = this.authenticationHelper.getData()?.accessToken;
             //adicionando o token na chamada da requisição
             req = req.clone({

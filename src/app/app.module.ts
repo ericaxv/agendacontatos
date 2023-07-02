@@ -19,6 +19,7 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { ChartModule } from 'angular-highcharts';
 
 
 @NgModule({
@@ -44,8 +45,8 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     NgxMaskDirective,
     NgxMaskPipe,
     NgxPaginationModule,
-    FilterPipeModule
-    
+    FilterPipeModule,
+    ChartModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
